@@ -16,3 +16,5 @@ Select the "Credential Manager".
 Click on "Manage Windows Credentials".
 Delete any credentials related to Git or GitHub.
 Once you deleted all then try to clone again.
+
+Extra:- To change origin ,git remote set-url origin newRepoUrl ,where newRepoUrl=https://github.com/{userName}/{repoName}.git
