@@ -3,22 +3,26 @@ package com.workops.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.workops.exception.ErrorDetails;
 import com.workops.model.Project;
+import com.workops.pojo.SwitchProject;
 import com.workops.service.ProjectService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class ProjectController {
 
 	@Autowired
 	ProjectService projectservice;
 	
-	@PostMapping("/api/project/create")
+	@PostMapping("/api/projects")
 	public ResponseEntity create(@RequestBody Project project) 
 	{
 		try {
@@ -27,7 +31,7 @@ public class ProjectController {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
 		}
 	}
-	@PostMapping("/api/project/update")
+	@PutMapping("/api/projects/{id}")
 	public ResponseEntity update(@RequestBody Project project)
 	{
 		try {
@@ -37,8 +41,8 @@ public class ProjectController {
 		}
 	}
 	
-	@PostMapping("/api/project/{id}")
-	public ResponseEntity findProjectById(@RequestBody Project project)
+	@GetMapping("/api/projects/{id}")
+	public ResponseEntity findProject(@RequestBody Project project)
 	{
 		try {
 			return new ResponseEntity<>(projectservice.getProjectById(project),HttpStatus.OK);
@@ -46,8 +50,8 @@ public class ProjectController {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
 		}	
 	}
-	@PostMapping("/api/project/delete/{id}")
-	public ResponseEntity removeProjectById(@RequestBody Project project)
+	@PostMapping("/api/projects/{id}")
+	public ResponseEntity removeProject(@RequestBody Project project)
 	{
 		try {
 			projectservice.deleteProjectById(project);
@@ -56,8 +60,8 @@ public class ProjectController {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
 		}	
 	}
-	@GetMapping("/api/project/")
-	public ResponseEntity findAllProject()
+	@GetMapping("/api/projects")
+	public ResponseEntity<Object> findAllProject()
 	{
 		try {
 			return new ResponseEntity<>(projectservice.getAllProjects(),HttpStatus.OK);

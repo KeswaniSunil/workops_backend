@@ -21,6 +21,20 @@ public class Project implements Serializable {
 	private String name;
 
 	private String projectkey;
+	
+	private int selected;
+
+	public int getSelected() {
+		return selected;
+	}
+
+	public void setSelected(int selected) {
+		this.selected = selected;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	public String getId() {
 		return id;

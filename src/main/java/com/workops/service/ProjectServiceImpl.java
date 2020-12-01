@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.workops.dao.ProjectDao;
 import com.workops.exception.ErrorDetails;
 import com.workops.model.Project;
+import com.workops.pojo.SwitchProject;
 
 import java.util.List;
 import java.util.Optional;
@@ -40,7 +41,6 @@ public class ProjectServiceImpl implements ProjectService {
 			throw new ErrorDetails(e.getMessage());
 		}
 	}
-
 	@Override
 	public Project createProject(Project project) throws ErrorDetails {
 		try
@@ -81,5 +81,4 @@ public class ProjectServiceImpl implements ProjectService {
 		}
 		
 	}
-	
 }

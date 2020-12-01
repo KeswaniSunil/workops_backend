@@ -20,19 +20,19 @@ public class AuthFilter extends GenericFilterBean {
 		HttpServletRequest httpRequest=(HttpServletRequest)request;
 		HttpServletResponse httpResponse=(HttpServletResponse)response;
 		String authHeader=httpRequest.getHeader("Authorization");
-		if(!httpRequest.getRequestURI().toString().startsWith("/api/signin")&&!httpRequest.getRequestURI().toString().startsWith("/api/signup"))
-		{
-			if(authHeader==null)
-			{
-			httpResponse.sendError(HttpStatus.FORBIDDEN.value(), "Authorization token must be provided");
-            return;
-			}
-		}
-		else
-		{
+//		if(!httpRequest.getRequestURI().toString().startsWith("/api/signin")&&!httpRequest.getRequestURI().toString().startsWith("/api/signup"))
+//		{
+//			if(authHeader==null)
+//			{
+//			httpResponse.sendError(HttpStatus.FORBIDDEN.value(), "Authorization token must be provided");
+//            return;
+//			}
+//		}
+//		else
+//		{
 			
 			chain.doFilter(httpRequest, httpResponse);
-		}
+//		}
 	}
 
 }
