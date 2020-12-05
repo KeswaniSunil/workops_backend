@@ -13,7 +13,7 @@ import com.workops.exception.ErrorDetails;
 import com.workops.model.Role;
 import com.workops.service.RoleService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class RoleController {
 

@@ -26,10 +26,10 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public Optional<Project> getProjectById(Project project) throws ErrorDetails {
+	public Optional<Project> getProjectById(String id) throws ErrorDetails {
 		try
 		{
-		Optional<Project> p=projectdao.findById(project.getId());
+		Optional<Project> p=projectdao.findById(id);
 		if(!p.isPresent())
 		{
 			throw  new ErrorDetails("Not Found Project With Given Id");
@@ -45,9 +45,10 @@ public class ProjectServiceImpl implements ProjectService {
 	public Project createProject(Project project) throws ErrorDetails {
 		try
 		{
+			
 		Optional<Project> p=projectdao.findById(project.getId());
 		if(!p.isPresent())
-		{
+		{	
 			return projectdao.save(project);
 		}
 		throw new ErrorDetails("Project Already Exists");

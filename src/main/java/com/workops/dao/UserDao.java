@@ -19,4 +19,7 @@ public interface UserDao extends JpaRepository <User,String>{
 	@Query("select token from User u where u.email=:email")
 	@Transactional
 	String getTokenByEmail(@Param("email") String email);
+	@Query("select email from User u where u.token=:token")
+	@Transactional
+	String getEmailByToken(@Param("token") String token);
 }

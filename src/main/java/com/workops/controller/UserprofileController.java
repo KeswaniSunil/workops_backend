@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.workops.model.Userprofile;
 import com.workops.service.UserprofileService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class UserprofileController {
 
@@ -38,17 +41,17 @@ public class UserprofileController {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
 		}
 	}
-	@GetMapping("/api/userprofiles/{id}")
-	public ResponseEntity findUserProfile(@RequestBody Userprofile userprofile)
+	@GetMapping("/api/userprofiles/{email}")
+	public ResponseEntity findUserProfile(@PathVariable String email)
 	{
 		try {
-			return new ResponseEntity<>(ups.getUserprofileByEmail(userprofile),HttpStatus.OK);
+			return new ResponseEntity<>(ups.getUserprofileByEmail(email),HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
 		}	
 	}
 	
-	@PostMapping("/api/userprofiles/{id}")
+	@DeleteMapping("/api/userprofiles/{id}")
 	public ResponseEntity removeProfile(@RequestBody Userprofile userprofile)
 	{
 		try {
@@ -58,12 +61,12 @@ public class UserprofileController {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
 		}	
 	}
-	@PutMapping("/api/userprofiles/switchproject")
-	public ResponseEntity setSelectedProject(@RequestBody Userprofile userprofile)
+	@PutMapping("/api/userprofiles/switchproject/{token}")
+	public ResponseEntity setSelectedProject(@PathVariable String token,@RequestBody Userprofile userprofile)
 	{
 		try {
-			ups.setSelectedProject(userprofile);
-			return new ResponseEntity<>("Project Success Switched",HttpStatus.OK);
+			ups.setSelectedProject(token,userprofile);
+			return new ResponseEntity<>("Project Selected Successfully",HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
 		}	

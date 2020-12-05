@@ -10,7 +10,7 @@ import com.workops.pojo.SwitchProject;
 public interface ProjectService {
 
 	List<Project> getAllProjects();
-	Optional<Project> getProjectById(Project project)throws Exception;
+	Optional<Project> getProjectById(String id)throws Exception;
 	Project createProject(Project project) throws Exception;
 	Project updateProject(Project project) ;
 	void deleteProjectById(Project project) throws Exception;

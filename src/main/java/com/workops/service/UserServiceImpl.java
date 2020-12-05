@@ -15,6 +15,7 @@ import com.workops.exception.AuthException;
 import com.workops.model.Logintype;
 import com.workops.model.User;
 import com.workops.pojo.JwtToken;
+import com.workops.pojo.UserEmail;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -32,13 +33,17 @@ public class UserServiceImpl implements UserService {
 		try
 		{
 			String email=user.getEmail();
+			System.out.println(user.getEmail()+" "+user.getPassword());
 			User check=userdao.findByEmail(email);
 			if(!BCrypt.checkpw(user.getPassword(),check.getPassword()))
 			{
+				System.out.println("In 1");
 				throw new AuthException("Invalid email/password");
 			}
+			System.out.println("In 2");
 			userdao.updateTokenByEmail(user.getEmail(), generateJwtToken(user).getToken());
 			check.setToken(userdao.getTokenByEmail(user.getEmail()));
+			System.out.println("In 3");
 			return new JwtToken(check.getToken());
 		}
 		catch(Exception e)
@@ -92,6 +97,36 @@ public class UserServiceImpl implements UserService {
         JwtToken jwt=new JwtToken();
         jwt.setToken(token);
          return jwt;
+	}
+
+	@Override
+	public UserEmail getUser(String token) {
+		UserEmail ue=new UserEmail();
+		ue.setEmail(userdao.getEmailByToken(token));
+		return ue;
+	}
+
+	@Override
+	public String changePassword(User user) throws AuthException {
+		
+		try {
+			User b=userdao.findByEmail(user.getEmail());
+			String hashedPassword=BCrypt.hashpw(user.getPassword(),BCrypt.gensalt(10));
+//			System.out.println(hashedPassword+" "+b.getPassword());
+//			if(hashedPassword.equals(b.getPassword())) {
+////				System.out.println("same= "+hashedPassword);
+//				return "New Password Can't be same as Old Password";				
+//			}
+//			System.out.println(user.getPassword()+" "+hashedPassword);
+			b.setPassword(BCrypt.hashpw(user.getPassword(),BCrypt.gensalt(10)));
+			userdao.save(b);
+			return "Password Changed";	
+		}
+		catch(Exception e)
+		{
+			System.out.println("error= "+e);	
+			throw new AuthException("InValidDetails.Failed To Create Account="+e.getMessage());
+		}
 	}
 
 }

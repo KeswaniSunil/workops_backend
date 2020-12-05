@@ -8,9 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.workops.dao.UserDao;
 import com.workops.dao.UserprofileDao;
 import com.workops.exception.ErrorDetails;
 import com.workops.model.Userprofile;
+import com.workops.pojo.UserEmail;
 
 
 @Service
@@ -19,16 +21,20 @@ public class UserprofileServiceImpl implements UserprofileService {
 
 	@Autowired
 	UserprofileDao upd;
+	
+	@Autowired
+	UserDao userdao;
+	
 	@Override
 	public List<Userprofile> getAllUserprofiles() {
 		return upd.findAll();
 	}
 
 	@Override
-	public Optional<Userprofile> getUserprofileByEmail(Userprofile userprofile) throws Exception {
+	public Optional<Userprofile> getUserprofileByEmail(String email) throws Exception {
 		try
 		{
-		Optional<Userprofile> p=upd.findByEmail(userprofile.getEmail());
+		Optional<Userprofile> p=upd.findByEmail(email);
 		if(!p.isPresent())
 		{
 			throw  new ErrorDetails("Not Found Project With Given Id");
@@ -82,10 +88,12 @@ public class UserprofileServiceImpl implements UserprofileService {
 	}
 
 	@Override
-	public void setSelectedProject(Userprofile userprofile) throws Exception {
+	public void setSelectedProject(String token , Userprofile userprofile) throws Exception {
 		try
 		{
-			upd.setSelectedProjectByEmail(userprofile.getEmail(), userprofile.getSelectedProject());
+			UserEmail ue=new UserEmail();
+			ue.setEmail(userdao.getEmailByToken(token));
+			upd.setSelectedProjectByEmail(ue.getEmail(), userprofile.getSelectedProject());
 		}
 		catch(Exception e)
 		{

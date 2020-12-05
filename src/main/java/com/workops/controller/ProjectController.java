@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,7 +32,7 @@ public class ProjectController {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
 		}
 	}
-	@PutMapping("/api/projects/{id}")
+	@PutMapping("/api/projects")
 	public ResponseEntity update(@RequestBody Project project)
 	{
 		try {
@@ -42,10 +43,10 @@ public class ProjectController {
 	}
 	
 	@GetMapping("/api/projects/{id}")
-	public ResponseEntity findProject(@RequestBody Project project)
+	public ResponseEntity findProject(@PathVariable String id)
 	{
 		try {
-			return new ResponseEntity<>(projectservice.getProjectById(project),HttpStatus.OK);
+			return new ResponseEntity<>(projectservice.getProjectById(id),HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
 		}	
