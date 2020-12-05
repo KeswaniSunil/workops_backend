@@ -13,61 +13,61 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.workops.exception.ErrorDetails;
-import com.workops.model.Project;
-import com.workops.pojo.ProjectData;
-import com.workops.pojo.SwitchProject;
-import com.workops.service.ProjectService;
+import com.workops.model.Component;
+import com.workops.service.ComponentService;
 
 //@CrossOrigin(origins = "http://localhost:3000")
 @RestController
-public class ProjectController {
+public class ComponentController {
 
 	@Autowired
-	ProjectService projectservice;
+	ComponentService componentservice;
 	
-	@PostMapping("/api/projects")
-	public ResponseEntity create(@RequestBody ProjectData project) 
+	@PostMapping("/api/components")
+	public ResponseEntity create(@RequestBody Component component) 
 	{
 		try {
-			return new ResponseEntity<>(projectservice.createProject(project),HttpStatus.OK);
+//			System.out.println("com="+component);
+			return new ResponseEntity<>(componentservice.createComponent(component),HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
 		}
 	}
-	@PutMapping("/api/projects/")
-	public ResponseEntity update(@RequestBody Project project)
+	@PutMapping("/api/components/{id}")
+	public ResponseEntity update(@RequestBody Component component)
 	{
 		try {
-			return new ResponseEntity<>(projectservice.updateProject(project),HttpStatus.OK);
+			return new ResponseEntity<>(componentservice.updateComponent(component),HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
 		}
 	}
 	
-	@GetMapping("/api/projects/{id}")
-	public ResponseEntity findProject(@PathVariable("id") String id)
+	@GetMapping("/api/components/{id}")
+	public ResponseEntity findComponent(@PathVariable String componentid)
 	{
+		System.out.println("component="+componentid);
 		try {
-			return new ResponseEntity<>(projectservice.getProjectById(id),HttpStatus.OK);
+			return new ResponseEntity<>(componentservice.getComponentById(componentid),HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
 		}	
 	}
-	@DeleteMapping("/api/projects/{id}")
-	public ResponseEntity removeProject(@PathVariable String id)
+	@DeleteMapping("/api/components/{id}")
+	public ResponseEntity removeComponenet(@PathVariable String componentid)
 	{
 		try {
-			projectservice.deleteProjectById(id);
-			return new ResponseEntity<>("Project SuccessFullyDeleted",HttpStatus.OK);
+			componentservice.deleteComponentById(componentid);
+			return new ResponseEntity<>("Component SuccessFully Deleted",HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
 		}	
 	}
-	@GetMapping("/api/projects")
-	public ResponseEntity<Object> findAllProject()
+	@GetMapping("/api/components")
+	public ResponseEntity<Object> findAllComponent()
 	{
 		try {
-			return new ResponseEntity<>(projectservice.getAllProjects(),HttpStatus.OK);
+			return new ResponseEntity<>(componentservice.getAllComponents(),HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
 		}	

@@ -25,10 +25,10 @@ public class UserprofileServiceImpl implements UserprofileService {
 	}
 
 	@Override
-	public Optional<Userprofile> getUserprofileByEmail(Userprofile userprofile) throws Exception {
+	public Optional<Userprofile> getUserprofileByEmail(String email) throws Exception {
 		try
 		{
-		Optional<Userprofile> p=upd.findByEmail(userprofile.getEmail());
+		Optional<Userprofile> p=upd.findByEmail(email);
 		if(!p.isPresent())
 		{
 			throw  new ErrorDetails("Not Found Project With Given Id");
@@ -64,16 +64,16 @@ public class UserprofileServiceImpl implements UserprofileService {
 	}
 
 	@Override
-	public void deleteUserprofileByEmail(Userprofile userprofile) throws Exception {
+	public void deleteUserprofileByEmail(String email) throws Exception {
 		try
 		{
-		Optional<Userprofile> p=upd.findByEmail(userprofile.getEmail());
+		Optional<Userprofile> p=upd.findByEmail(email);
 		if(!p.isPresent())
 		{
 
 			throw new ErrorDetails("No Project Exists With this Id");
 		}
-		upd.deleteById(userprofile.getEmail());
+		upd.deleteById(email);
 		}
 		catch(Exception e)
 		{

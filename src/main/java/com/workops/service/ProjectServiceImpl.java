@@ -5,10 +5,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.workops.dao.ProjectDao;
 import com.workops.exception.ErrorDetails;
 import com.workops.model.Project;
+import com.workops.pojo.ProjectData;
 import com.workops.pojo.SwitchProject;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,10 +28,10 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public Optional<Project> getProjectById(Project project) throws ErrorDetails {
+	public Optional<Project> getProjectById(String projectid) throws ErrorDetails {
 		try
 		{
-		Optional<Project> p=projectdao.findById(project.getId());
+		Optional<Project> p=projectdao.findById(projectid);
 		if(!p.isPresent())
 		{
 			throw  new ErrorDetails("Not Found Project With Given Id");
@@ -42,13 +44,19 @@ public class ProjectServiceImpl implements ProjectService {
 		}
 	}
 	@Override
-	public Project createProject(Project project) throws ErrorDetails {
+	public Project createProject(ProjectData project) throws ErrorDetails {
 		try
 		{
-		Optional<Project> p=projectdao.findById(project.getId());
+		Optional<Project> p=projectdao.findByName(project.getName());
 		if(!p.isPresent())
 		{
-			return projectdao.save(project);
+//			project.setId(UUID.randomUUID().toString().substring(0, 32));
+			Project p1=new Project();
+			p1.setId(UUID.randomUUID().toString().substring(0, 32));
+			p1.setName(project.getName());
+			p1.setProjectkey(project.getProjectKey());
+			p1.setSelected(project.getSelected());
+			return projectdao.save(p1);
 		}
 		throw new ErrorDetails("Project Already Exists");
 		}
@@ -64,16 +72,16 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public void deleteProjectById(Project project) throws ErrorDetails {
+	public void deleteProjectById(String projectid) throws ErrorDetails {
 		try
 		{
-		Optional<Project> p=projectdao.findById(project.getId());
+		Optional<Project> p=projectdao.findById(projectid);
 		if(!p.isPresent())
 		{
 
 			throw new ErrorDetails("No Project Exists With this Id");
 		}
-		projectdao.deleteById(project.getId());
+		projectdao.deleteById(projectid);
 		}
 		catch(Exception e)
 		{

@@ -2,6 +2,9 @@ package com.workops.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.hibernate.annotations.Type;
+
 import java.util.List;
 
 
@@ -12,6 +15,7 @@ import java.util.List;
 @Entity
 @Table(name="project")
 public class Project implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	@Id
 	private String id;
