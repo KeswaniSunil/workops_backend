@@ -23,10 +23,10 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@Override
-	public Optional<Role> getRoleById(Role role) throws Exception {
+	public Optional<Role> getRoleById(int id) throws Exception {
 		try
 		{
-		Optional<Role> r=roledao.findById(role.getId());
+		Optional<Role> r=roledao.findById(id);
 		if(!r.isPresent())
 		{
 			throw  new ErrorDetails("Not Role Project With Given Id");
@@ -62,16 +62,16 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@Override
-	public void deleteRoleById(Role role) throws Exception {
+	public void deleteRoleById(int id) throws Exception {
 		try
 		{
-		Optional<Role> r=roledao.findById(role.getId());
+		Optional<Role> r=roledao.findById(id);
 		if(!r.isPresent())
 		{
 
 			throw new ErrorDetails("No Role Exists With this Id");
 		}
-		roledao.deleteById(role.getId());
+		roledao.deleteById(id);
 		}
 		catch(Exception e)
 		{

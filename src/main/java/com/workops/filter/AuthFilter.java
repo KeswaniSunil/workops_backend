@@ -12,6 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.filter.GenericFilterBean;
 
+import com.workops.Constants;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+
 public class AuthFilter extends GenericFilterBean {
 
 	@Override
@@ -20,19 +25,37 @@ public class AuthFilter extends GenericFilterBean {
 		HttpServletRequest httpRequest=(HttpServletRequest)request;
 		HttpServletResponse httpResponse=(HttpServletResponse)response;
 		String authHeader=httpRequest.getHeader("Authorization");
-//		if(!httpRequest.getRequestURI().toString().startsWith("/api/signin")&&!httpRequest.getRequestURI().toString().startsWith("/api/signup"))
-//		{
-//			if(authHeader==null)
-//			{
-//			httpResponse.sendError(HttpStatus.FORBIDDEN.value(), "Authorization token must be provided");
-//            return;
-//			}
-//		}
-//		else
-//		{
+		if(!httpRequest.getRequestURI().toString().startsWith("/api/signin")&&!httpRequest.getRequestURI().toString().startsWith("/api/signup"))
+		{
+			if(authHeader==null)
+			{
+			httpResponse.sendError(HttpStatus.FORBIDDEN.value(), "Authorization token must be provided");
+            return;
+			}
+			else
+			{
+				String[] authHeaderArr = authHeader.split("Bearer ");
+	            if(authHeaderArr.length > 1 && authHeaderArr[1] != null) {
+	                String token = authHeaderArr[1];
+	                try {
+	                    Claims claims = Jwts.parser().setSigningKey(Constants.API_SECRET_KEY)
+	                            .parseClaimsJws(token).getBody();
+	                    httpRequest.setAttribute("email", claims.get("email"));
+	                }catch (Exception e) {
+	                    httpResponse.sendError(HttpStatus.FORBIDDEN.value(), "Invalid/expired token="+e.getMessage());
+	                    return;
+	                }
+	            } else {
+	                httpResponse.sendError(HttpStatus.FORBIDDEN.value(), "Authorization token must be Bearer");
+	                return;
+	            }
+			}
+		}
+		else
+		{
 			
 			chain.doFilter(httpRequest, httpResponse);
-//		}
+		}
 	}
 
 }

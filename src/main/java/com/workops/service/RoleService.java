@@ -9,9 +9,9 @@ import com.workops.model.Role;
 public interface RoleService {
 
 	List<Role> getAllRoles();
-	Optional<Role> getRoleById(Role role)throws Exception;
+	Optional<Role> getRoleById(int id)throws Exception;
 	Role createRole(Role role) throws Exception;
 	Role updateRole(Role role) ;
-	void deleteRoleById(Role role) throws Exception;
+	void deleteRoleById(int id) throws Exception;
 	
 }

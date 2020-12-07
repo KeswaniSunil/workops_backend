@@ -52,10 +52,10 @@ public class UserprofileController {
 	}
 	
 	@DeleteMapping("/api/userprofiles/{id}")
-	public ResponseEntity removeProfile(@RequestBody Userprofile userprofile)
+	public ResponseEntity removeProfile(@PathVariable String email)
 	{
 		try {
-			ups.deleteUserprofileByEmail(userprofile);
+			ups.deleteUserprofileByEmail(email);
 			return new ResponseEntity<>("Profile SuccessFullyDeleted",HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);

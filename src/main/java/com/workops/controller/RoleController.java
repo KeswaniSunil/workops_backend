@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,19 +41,19 @@ public class RoleController {
 	}
 	
 	@PostMapping("/api/role/{id}")
-	public ResponseEntity findRoleById(@RequestBody Role role)
+	public ResponseEntity findRoleById(@PathVariable int id)
 	{
 		try {
-			return new ResponseEntity<>(roleservice.getRoleById(role),HttpStatus.OK);
+			return new ResponseEntity<>(roleservice.getRoleById(id),HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
 		}	
 	}
 	@PostMapping("/api/role/delete/{id}")
-	public ResponseEntity removeRoleById(@RequestBody Role role)
+	public ResponseEntity removeRoleById(@PathVariable int id)
 	{
 		try {
-			roleservice.deleteRoleById(role);
+			roleservice.deleteRoleById(id);
 			return new ResponseEntity<>("Role SuccessFully Deleted",HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);

@@ -11,6 +11,6 @@ public interface UserprofileService {
 	Optional<Userprofile> getUserprofileByEmail(String email) throws Exception;
 	Userprofile createUserprofile(Userprofile userprofile) throws Exception;
 	Userprofile updateUserprofile(Userprofile userprofile) ;
-	void deleteUserprofileByEmail(Userprofile userprofile) throws Exception;
+	void deleteUserprofileByEmail(String email) throws Exception;
 	void setSelectedProject(String token,Userprofile userprofile) throws Exception;
 }

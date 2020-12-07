@@ -37,13 +37,13 @@ public class UserServiceImpl implements UserService {
 			User check=userdao.findByEmail(email);
 			if(!BCrypt.checkpw(user.getPassword(),check.getPassword()))
 			{
-				System.out.println("In 1");
+//				System.out.println("In 1");
 				throw new AuthException("Invalid email/password");
 			}
-			System.out.println("In 2");
+//			System.out.println("In 2");
 			userdao.updateTokenByEmail(user.getEmail(), generateJwtToken(user).getToken());
 			check.setToken(userdao.getTokenByEmail(user.getEmail()));
-			System.out.println("In 3");
+//			System.out.println("In 3 "+check.getToken());
 			return new JwtToken(check.getToken());
 		}
 		catch(Exception e)
@@ -102,7 +102,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserEmail getUser(String token) {
 		UserEmail ue=new UserEmail();
+		System.out.println(token);
 		ue.setEmail(userdao.getEmailByToken(token));
+		System.out.println(ue.getEmail());
 		return ue;
 	}
 

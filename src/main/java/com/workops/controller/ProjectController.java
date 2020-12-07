@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.workops.exception.ErrorDetails;
 import com.workops.model.Project;
+import com.workops.pojo.ProjectData;
 import com.workops.pojo.SwitchProject;
 import com.workops.service.ProjectService;
 
@@ -24,7 +26,7 @@ public class ProjectController {
 	ProjectService projectservice;
 	
 	@PostMapping("/api/projects")
-	public ResponseEntity create(@RequestBody Project project) 
+	public ResponseEntity create(@RequestBody ProjectData project) 
 	{
 		try {
 			return new ResponseEntity<>(projectservice.createProject(project),HttpStatus.OK);
@@ -51,11 +53,11 @@ public class ProjectController {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
 		}	
 	}
-	@PostMapping("/api/projects/{id}")
-	public ResponseEntity removeProject(@RequestBody Project project)
+	@DeleteMapping("/api/projects/{id}")
+	public ResponseEntity removeProject(@PathVariable String id)
 	{
 		try {
-			projectservice.deleteProjectById(project);
+			projectservice.deleteProjectById(id);
 			return new ResponseEntity<>("Project SuccessFullyDeleted",HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
