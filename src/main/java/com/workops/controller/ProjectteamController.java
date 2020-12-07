@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.workops.model.Projectteam;
 import com.workops.model.ProjectteamPK;
+import com.workops.model.Userprofile;
 import com.workops.service.ProjectteamService;
 
 @RestController
@@ -70,7 +71,7 @@ public class ProjectteamController {
 	{
 		System.out.println("innnn");
 		try {
-			pts.deleteProjectteamByEmail(new ProjectteamPK(pid,eid));
+			pts.deleteProjectteamByEmailAndProjectId(pid,eid);
 			return new ResponseEntity<>("Project Deleted Successfully",HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);

@@ -41,7 +41,7 @@ public class UserprofileController {
 		}
 	}
 	@GetMapping("/api/userprofiles/{id}")
-	public ResponseEntity findUserProfile(@PathVariable String email)
+	public ResponseEntity findUserProfile(@PathVariable("id") String email)
 	{
 		try {
 			return new ResponseEntity<>(ups.getUserprofileByEmail(email),HttpStatus.OK);

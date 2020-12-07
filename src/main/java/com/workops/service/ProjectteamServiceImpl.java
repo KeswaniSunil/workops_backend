@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.workops.dao.ProjectteamDao;
+import com.workops.dao.UserprofileDao;
 import com.workops.exception.ErrorDetails;
 import com.workops.model.Projectteam;
 import com.workops.model.ProjectteamPK;
@@ -19,7 +20,8 @@ import com.workops.model.ProjectteamPK;
 @Transactional
 public class ProjectteamServiceImpl implements ProjectteamService {
 
-	
+	@Autowired
+	UserprofileDao updao;
 	@Autowired
 	ProjectteamDao ptdao;
 	@Override
@@ -66,10 +68,11 @@ public class ProjectteamServiceImpl implements ProjectteamService {
 		}
 	}
 	@Override
-	public void deleteProjectteamByEmail(ProjectteamPK id) throws Exception {
+	public void deleteProjectteamByEmailAndProjectId(String projectid,String email) throws Exception {
 		try
 		{
-			ptdao.deleteById(id);
+			
+			ptdao.deleteById(new ProjectteamPK(updao.findByEmail(email).get(),projectid));
 		}
 		catch(Exception e)
 		{

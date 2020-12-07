@@ -1,6 +1,7 @@
 package com.workops.service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -92,6 +93,12 @@ public class UserServiceImpl implements UserService {
         JwtToken jwt=new JwtToken();
         jwt.setToken(token);
          return jwt;
+	}
+
+	@Override
+	public List<User> getAll() {
+		// TODO Auto-generated method stub
+		return userdao.findAll();
 	}
 
 }

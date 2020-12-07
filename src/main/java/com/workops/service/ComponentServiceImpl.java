@@ -13,6 +13,7 @@ import com.workops.dao.ComponentDao;
 import com.workops.dao.ProjectDao;
 import com.workops.exception.ErrorDetails;
 import com.workops.model.Component;
+import com.workops.model.Project;
 
 @Service
 @Transactional
@@ -29,15 +30,15 @@ public class ComponentServiceImpl implements ComponentService {
 	}
 
 	@Override
-	public Optional<Component> getComponentById(String componentId) throws Exception {
+	public List<Component> getAllComponentByProjectId(String projectid) throws Exception {
 	
 		try
 		{
-		Optional<Component> com=componentdao.findById(componentId);
-		if(!com.isPresent())
-		{
-			throw  new ErrorDetails("Not Found Component With Given Id");
-		}
+			List<Component> com=componentdao.findByProject(projectdao.findById(projectid).get());
+//		if(!com.isPresent())
+//		{
+//			throw  new ErrorDetails("Not Found Component With Given Id");
+//		}
 		return com;
 		}
 		catch(Exception e)
@@ -50,12 +51,6 @@ public class ComponentServiceImpl implements ComponentService {
 	public Component createComponent(Component component) throws Exception {
 		try
 		{
-		
-//			ObjectMapper mapper = new ObjectMapper();
-//		      //Converting the Object to JSONString
-//		      String jsonString = mapper.writeValueAsString(component);
-//		      System.out.println(jsonString);
-//			return null;
 		Optional<Component> com=componentdao.findByName(component.getName());
 		if(!com.isPresent())
 		{
@@ -92,6 +87,23 @@ public class ComponentServiceImpl implements ComponentService {
 			throw new ErrorDetails(e.getMessage());
 		}
 		
+	}
+
+	@Override
+	public Optional<Component> getComponentById(String cid) throws Exception {
+		try
+		{
+			Optional<Component> com=componentdao.findById(cid);
+		if(!com.isPresent())
+		{
+			throw  new ErrorDetails("Not Found Component With Given Id");
+		}
+		return com;
+		}
+		catch(Exception e)
+		{
+			throw new ErrorDetails(e.getMessage());
+		}
 	}
 
 	

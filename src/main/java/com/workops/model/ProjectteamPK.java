@@ -9,28 +9,32 @@ import javax.persistence.*;
  */
 @Embeddable
 public class ProjectteamPK implements Serializable {
+	public Userprofile getUser() {
+		return user;
+	}
+	public void setUser(Userprofile user) {
+		this.user = user;
+	}
+
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
-	@Column(insertable=false, updatable=false,nullable=false)
-	private String email;
+//	@Column(insertable=false, updatable=false,nullable=false)
+	@ManyToOne
+	@JoinColumn(name="email")
+	private Userprofile user;
 
 	@Column(name="projectid",insertable=false, updatable=false,nullable=false)
 	private String projectId;
 
 	public ProjectteamPK() {
 	}
-	public ProjectteamPK(String email, String projectId) {
+	public ProjectteamPK(Userprofile user, String projectId) {
 		super();
-		this.email = email;
+		this.user=user;
 		this.projectId = projectId;
 	}
-	public String getEmail() {
-		return this.email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	
 	public String getProjectId() {
 		return this.projectId;
 	}
@@ -47,14 +51,14 @@ public class ProjectteamPK implements Serializable {
 		}
 		ProjectteamPK castOther = (ProjectteamPK)other;
 		return 
-			this.email.equals(castOther.email)
+			this.user.equals(castOther.user)
 			&& this.projectId.equals(castOther.projectId);
 	}
 
 	public int hashCode() {
 		final int prime = 31;
 		int hash = 17;
-		hash = hash * prime + this.email.hashCode();
+		hash = hash * prime + this.user.hashCode();
 		hash = hash * prime + this.projectId.hashCode();
 		
 		return hash;

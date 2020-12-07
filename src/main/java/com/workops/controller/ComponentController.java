@@ -44,20 +44,30 @@ public class ComponentController {
 	}
 	
 	@GetMapping("/api/components/{id}")
-	public ResponseEntity findComponent(@PathVariable String componentid)
+	public ResponseEntity findComponent(@PathVariable String id)
 	{
-		System.out.println("component="+componentid);
+		System.out.println("component="+id);
 		try {
-			return new ResponseEntity<>(componentservice.getComponentById(componentid),HttpStatus.OK);
+			return new ResponseEntity<>(componentservice.getComponentById(id),HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
 		}	
 	}
-	@DeleteMapping("/api/components/{id}")
-	public ResponseEntity removeComponenet(@PathVariable String componentid)
+	@GetMapping("/api/components/projects/{projectid}")
+	public ResponseEntity findComponentByProjectId(@PathVariable String projectid)
 	{
 		try {
-			componentservice.deleteComponentById(componentid);
+			return new ResponseEntity<>(componentservice.getAllComponentByProjectId(projectid),HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+		}	
+	}
+	@DeleteMapping("/api/components/{cid}")
+	public ResponseEntity removeComponenet(@PathVariable String cid)
+	{
+		try {
+//			System.out.println("cid= "+cid);
+			componentservice.deleteComponentById(cid);
 			return new ResponseEntity<>("Component SuccessFully Deleted",HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
@@ -67,7 +77,7 @@ public class ComponentController {
 	public ResponseEntity<Object> findAllComponent()
 	{
 		try {
-			return new ResponseEntity<>(componentservice.getAllComponents(),HttpStatus.OK);
+				return new ResponseEntity<>(componentservice.getAllComponents(),HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
 		}	

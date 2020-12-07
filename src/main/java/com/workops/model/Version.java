@@ -2,39 +2,40 @@ package com.workops.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 
 /**
- * The persistent class for the component database table.
+ * The persistent class for the version database table.
  * 
  */
 @Entity
-@Table(name="component")
-public class Component implements Serializable {
+@Table(name="version")
+@NamedQuery(name="Version.findAll", query="SELECT v FROM Version v")
+public class Version implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Column(name="id")
 	@Id
 	private String id;
 
+	@Column(name="description")
 	private String description;
 
+	@Column(name="name")
 	private String name;
 
-	//bi-directional many-to-one association to Project
-	@ManyToOne
-	@JoinColumn(name="projectid")
-	private Project project;
+	@Column(name="releasedate")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date releasedate;
 
-	@ManyToOne
-	@JoinColumn(name="email")
-	private Userprofile user; 
 	//bi-directional many-to-many association to Issue
 //	@ManyToMany
 //	@JoinTable(
-//		name="componentissue"
+//		name="issueversion"
 //		, joinColumns={
-//			@JoinColumn(name="componentId")
+//			@JoinColumn(name="versionId")
 //			}
 //		, inverseJoinColumns={
 //			@JoinColumn(name="issueId")
@@ -42,17 +43,12 @@ public class Component implements Serializable {
 //		)
 //	private List<Issue> issues;
 
+	//bi-directional many-to-one association to Project
+	@ManyToOne
+	@JoinColumn(name="projectid")
+	private Project project;
 
-
-	public Component() {
-	}
-
-	public Userprofile getUser() {
-		return user;
-	}
-
-	public void setUser(Userprofile user) {
-		this.user = user;
+	public Version() {
 	}
 
 	public String getId() {
@@ -79,14 +75,14 @@ public class Component implements Serializable {
 		this.name = name;
 	}
 
-	public Project getProject() {
-		return this.project;
+	public Date getReleasedate() {
+		return this.releasedate;
 	}
 
-	public void setProject(Project project) {
-		this.project = project;
+	public void setReleasedate(Date releasedate) {
+		this.releasedate = releasedate;
 	}
-//
+
 //	public List<Issue> getIssues() {
 //		return this.issues;
 //	}
@@ -94,5 +90,13 @@ public class Component implements Serializable {
 //	public void setIssues(List<Issue> issues) {
 //		this.issues = issues;
 //	}
+
+	public Project getProject() {
+		return this.project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
 
 }

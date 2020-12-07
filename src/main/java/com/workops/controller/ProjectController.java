@@ -34,7 +34,7 @@ public class ProjectController {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
 		}
 	}
-	@PutMapping("/api/projects/")
+	@PutMapping("/api/projects")
 	public ResponseEntity update(@RequestBody Project project)
 	{
 		try {

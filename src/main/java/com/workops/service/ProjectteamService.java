@@ -16,5 +16,5 @@ public interface ProjectteamService {
 //	Projectteam updateProject(Projectteam projectteam) ;
 	List<Projectteam> getProjectteamByProjectId(String projectid) throws Exception;
 	void deleteProjectteamByProjectId(String projectid) throws Exception;
-	void deleteProjectteamByEmail(ProjectteamPK id) throws Exception;
+	void deleteProjectteamByEmailAndProjectId(String pid,String email) throws Exception;
 }
