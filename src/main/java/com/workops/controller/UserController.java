@@ -65,6 +65,7 @@ public class UserController {
 	}
 	@GetMapping("/api/user/{token}")
 	public ResponseEntity getUserByToken(@PathVariable String token)
+
 	{
 		try
 		{
@@ -76,5 +77,5 @@ public class UserController {
 			return new ResponseEntity(e.getMessage().toString(),HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
 }

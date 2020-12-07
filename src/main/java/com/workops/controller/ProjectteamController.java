@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.workops.model.Projectteam;
 import com.workops.model.ProjectteamPK;
+import com.workops.model.Userprofile;
 import com.workops.service.ProjectteamService;
 
 @CrossOrigin(origins = "http://localhost:3000")

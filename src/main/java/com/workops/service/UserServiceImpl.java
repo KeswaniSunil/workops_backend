@@ -1,6 +1,7 @@
 package com.workops.service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -129,6 +130,6 @@ public class UserServiceImpl implements UserService {
 			System.out.println("error= "+e);	
 			throw new AuthException("InValidDetails.Failed To Create Account="+e.getMessage());
 		}
-	}
 
+	}
 }

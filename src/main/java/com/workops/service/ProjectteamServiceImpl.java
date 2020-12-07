@@ -21,12 +21,10 @@ import com.workops.model.Userprofile;
 @Transactional
 public class ProjectteamServiceImpl implements ProjectteamService {
 
-	
-	@Autowired
-	ProjectteamDao ptdao;
-	
 	@Autowired
 	UserprofileDao updao;
+	@Autowired
+	ProjectteamDao ptdao;
 	
 	@Override
 	public Projectteam createProjectteam(Projectteam project) throws Exception {
@@ -77,6 +75,7 @@ public class ProjectteamServiceImpl implements ProjectteamService {
 		try
 		{
 //			System.out.println("up= "+updao.findByEmail(email).get().getFullName());
+
 			ptdao.deleteById(new ProjectteamPK(updao.findByEmail(email).get(),projectid));
 		}
 		catch(Exception e)

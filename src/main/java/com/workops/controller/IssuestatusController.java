@@ -23,7 +23,7 @@ public class IssuestatusController {
 	@Autowired
 	IssuestatusService its;
 	
-	@PostMapping("/api/issuestatuss")
+	@PostMapping("/api/issuestatus")
 	public ResponseEntity create(@RequestBody Issuestatus issuestatus) throws JsonProcessingException 
 	{
 		ObjectMapper mapper = new ObjectMapper();
