@@ -118,4 +118,31 @@ public class ProjectServiceImpl implements ProjectService {
 		}
 		
 	}
+
+	@Override
+	public List<Project> getAllUserProjects(List<String> projs) throws Exception {
+		try
+		{
+		List<Project> p=projectdao.getprojects(projs);
+		return p;
+		}
+		catch(Exception e)
+		{
+			throw new ErrorDetails("Error in findings .Try again Later");
+		}	}
+
+	@Override
+	public List<String> getProjectIds(String email) throws Exception {
+		try
+		{
+		List<String> p=projectdao.getprojectids(email);
+		return p;
+		}
+		catch(Exception e)
+		{
+			throw new ErrorDetails("Error in findings .Try again Later");
+		}
+	}
+
+	
 }

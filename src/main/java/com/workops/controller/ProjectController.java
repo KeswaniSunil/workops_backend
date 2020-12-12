@@ -1,5 +1,7 @@
 package com.workops.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -68,6 +70,20 @@ public class ProjectController {
 	{
 		try {
 			return new ResponseEntity<>(projectservice.getAllProjects(),HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+		}	
+	}
+	@GetMapping("/api/projects/userprojects/{emailid}")
+	public ResponseEntity<Object> findAllProjectOfUser(@PathVariable("emailid") String emailid)
+	{
+		try {
+			List<String>projsid=projectservice.getProjectIds(emailid);
+			System.out.println("pro="+projsid.size());
+			if(projsid.size()>0)
+			return new ResponseEntity<>(projectservice.getAllUserProjects(projsid),HttpStatus.OK);
+			else
+				return new ResponseEntity<>("No Projects wih Given email",HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
 		}	

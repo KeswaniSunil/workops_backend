@@ -16,7 +16,7 @@ import com.workops.exception.ErrorDetails;
 import com.workops.model.Component;
 import com.workops.service.ComponentService;
 
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class ComponentController {
 
@@ -33,7 +33,7 @@ public class ComponentController {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
 		}
 	}
-	@PutMapping("/api/components/{id}")
+	@PutMapping("/api/components")
 	public ResponseEntity update(@RequestBody Component component)
 	{
 		try {

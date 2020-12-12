@@ -70,6 +70,30 @@ public class Issue implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="reportedby")
 	private User user3;
+	
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
+	public Sprint getSprint() {
+		return sprint;
+	}
+
+	public void setSprint(Sprint sprint) {
+		this.sprint = sprint;
+	}
+
+	@ManyToOne
+	@JoinColumn(name="projectid")
+	private Project project;
+	
+	@ManyToOne
+	@JoinColumn(name="sprintid")
+	private Sprint sprint;
 
 	//bi-directional many-to-one association to Issueattachment
 //	@OneToMany(mappedBy="issue")

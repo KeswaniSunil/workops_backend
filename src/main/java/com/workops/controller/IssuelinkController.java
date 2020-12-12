@@ -33,16 +33,16 @@ public class IssuelinkController {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
 		}
 	}
-//	@GetMapping("/api/Issuelinks/{id}")
-//	public ResponseEntity findProject(@RequestBody IssuelinkPK ptid)
-//	{
-//		try {
-//			return new ResponseEntity<>(ils.getIssuelinkById(ptid),HttpStatus.OK);
-//		} catch (Exception e) {
-//			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
-//		}	
-//	}
-	@GetMapping("/api/Issuelinks/{name}")
+	@GetMapping("/api/issuelinks/")
+	public ResponseEntity findProject()
+	{
+		try {
+			return new ResponseEntity<>(ils.getAllIssuelinks(),HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+		}	
+	}
+	@GetMapping("/api/issuelinks/{name}")
 	public ResponseEntity findIssuelink(@PathVariable("name") String name)
 	{
 		try {

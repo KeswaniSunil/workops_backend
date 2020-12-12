@@ -78,7 +78,7 @@ public class ComponentServiceImpl implements ComponentService {
 		if(!com.isPresent())
 		{
 
-			throw new ErrorDetails("No Project Exists With this Id");
+			throw new ErrorDetails("No Component Exists With this Id");
 		}
 		componentdao.deleteById(componentid);
 		}
