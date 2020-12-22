@@ -11,7 +11,7 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="Issue.findAll", query="SELECT i FROM Issue i")
+@Table(name="issue")
 public class Issue implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -37,8 +37,11 @@ public class Issue implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedOn;
 
-	//bi-directional many-to-many association to Component
-//	@ManyToMany(mappedBy="issues")
+//	bi-directional many-to-many association to Component
+//	@ManyToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+//	@JoinTable(name="componentissue",
+//	joinColumns= {@JoinColumn(name="issueid")},
+//	inverseJoinColumns= {@JoinColumn(name="componentid")})
 //	private List<Component> components;
 
 	//bi-directional many-to-one association to User
@@ -81,6 +84,26 @@ public class Issue implements Serializable {
 
 	public Sprint getSprint() {
 		return sprint;
+	}
+
+	public Issue(String id, Date createdOn, String description, Date duedate, String name, Date updatedOn, User user1,
+			User user2, Issuepriority issuepriorityBean, Issuestatus issuestatus, Issuetype issuetypeBean, User user3,
+			Project project, Sprint sprint) {
+		super();
+		this.id = id;
+		this.createdOn = createdOn;
+		this.description = description;
+		this.duedate = duedate;
+		this.name = name;
+		this.updatedOn = updatedOn;
+		this.user1 = user1;
+		this.user2 = user2;
+		this.issuepriorityBean = issuepriorityBean;
+		this.issuestatus = issuestatus;
+		this.issuetypeBean = issuetypeBean;
+		this.user3 = user3;
+		this.project = project;
+		this.sprint = sprint;
 	}
 
 	public void setSprint(Sprint sprint) {

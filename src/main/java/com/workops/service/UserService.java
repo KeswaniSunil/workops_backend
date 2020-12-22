@@ -16,4 +16,5 @@ public interface UserService {
 	String changePassword(User user) throws AuthException ;
 	JwtToken generateJwtToken(User user);
 	UserEmail getUser(String email);
+	boolean checkIfTokenExits(String token);
 }

@@ -2,6 +2,9 @@ package com.workops.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -14,11 +17,14 @@ import java.util.List;
 public class Component implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Column(name="id")
 	@Id
 	private String id;
 
+	@Column(name="description")
 	private String description;
 
+	@Column(name="name")
 	private String name;
 
 	//bi-directional many-to-one association to Project
@@ -29,17 +35,18 @@ public class Component implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="email")
 	private Userprofile user; 
-	//bi-directional many-to-many association to Issue
-//	@ManyToMany
-//	@JoinTable(
-//		name="componentissue"
-//		, joinColumns={
-//			@JoinColumn(name="componentId")
-//			}
-//		, inverseJoinColumns={
-//			@JoinColumn(name="issueId")
-//			}
-//		)
+//	//bi-directional many-to-many association to Issue
+//	@ManyToMany(mappedBy="components")
+////	@JoinTable(
+////		name="componentissue"
+////		, joinColumns={
+////			@JoinColumn(name="componentid")
+////			}
+////		, inverseJoinColumns={
+////			@JoinColumn(name="issueid")
+////			}
+////		)
+//	@JsonIgnore
 //	private List<Issue> issues;
 
 

@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
 		}
 		catch(Exception e)
 		{
-			throw new AuthException("Invalid email/password="+e.getMessage());
+			throw new AuthException("Invalid email/password");
 		}
 	}
 
@@ -131,5 +131,23 @@ public class UserServiceImpl implements UserService {
 			throw new AuthException("InValidDetails.Failed To Create Account="+e.getMessage());
 		}
 
+	}
+
+	@Override
+	public boolean checkIfTokenExits(String token) {
+		try
+		{
+			String check=userdao.getEmailByToken(token);
+			if(check.length()>0)
+			{
+				return true;
+			}
+			return false;
+		}
+		catch(Exception e)
+		{
+			System.out.println("Exception in checktoken="+e.getMessage());
+			return false;
+		}
 	}
 }

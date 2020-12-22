@@ -28,7 +28,7 @@ public class UserprofileController {
 		try {
 			return new ResponseEntity<>(ups.createUserprofile(userprofile),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	
@@ -38,7 +38,7 @@ public class UserprofileController {
 		try {
 			return new ResponseEntity<>(ups.updateUserprofile(userprofile),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	@GetMapping("/api/userprofiles/{email}")
@@ -47,7 +47,7 @@ public class UserprofileController {
 		try {
 			return new ResponseEntity<>(ups.getUserprofileByEmail(email),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	
@@ -58,7 +58,7 @@ public class UserprofileController {
 			ups.deleteUserprofileByEmail(email);
 			return new ResponseEntity<>("Profile SuccessFullyDeleted",HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@PutMapping("/api/userprofiles/switchproject/{token}")
@@ -68,7 +68,7 @@ public class UserprofileController {
 			ups.setSelectedProject(token,userprofile);
 			return new ResponseEntity<>("Project Selected Successfully",HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	
@@ -79,7 +79,7 @@ public class UserprofileController {
 		try {
 			return new ResponseEntity<>(ups.getAllUserprofiles(),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	

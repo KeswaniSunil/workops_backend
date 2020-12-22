@@ -20,7 +20,7 @@ import com.workops.pojo.ProjectData;
 import com.workops.pojo.SwitchProject;
 import com.workops.service.ProjectService;
 
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class ProjectController {
 
@@ -33,7 +33,7 @@ public class ProjectController {
 		try {
 			return new ResponseEntity<>(projectservice.createProject(project),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	@PutMapping("/api/projects")
@@ -42,7 +42,7 @@ public class ProjectController {
 		try {
 			return new ResponseEntity<>(projectservice.updateProject(project),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	
@@ -52,7 +52,7 @@ public class ProjectController {
 		try {
 			return new ResponseEntity<>(projectservice.getProjectById(id),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@DeleteMapping("/api/projects/{id}")
@@ -62,7 +62,7 @@ public class ProjectController {
 			projectservice.deleteProjectById(id);
 			return new ResponseEntity<>("Project SuccessFullyDeleted",HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@GetMapping("/api/projects")
@@ -85,7 +85,7 @@ public class ProjectController {
 			else
 				return new ResponseEntity<>("No Projects wih Given email",HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 }

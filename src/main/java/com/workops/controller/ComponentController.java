@@ -30,7 +30,7 @@ public class ComponentController {
 //			System.out.println("com="+component);
 			return new ResponseEntity<>(componentservice.createComponent(component),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	@PutMapping("/api/components")
@@ -39,7 +39,7 @@ public class ComponentController {
 		try {
 			return new ResponseEntity<>(componentservice.updateComponent(component),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	
@@ -50,7 +50,7 @@ public class ComponentController {
 		try {
 			return new ResponseEntity<>(componentservice.getComponentById(id),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@GetMapping("/api/components/projects/{projectid}")
@@ -59,7 +59,7 @@ public class ComponentController {
 		try {
 			return new ResponseEntity<>(componentservice.getAllComponentByProjectId(projectid),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@DeleteMapping("/api/components/{cid}")
@@ -70,7 +70,7 @@ public class ComponentController {
 			componentservice.deleteComponentById(cid);
 			return new ResponseEntity<>("Component SuccessFully Deleted",HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@GetMapping("/api/components")
@@ -79,7 +79,7 @@ public class ComponentController {
 		try {
 				return new ResponseEntity<>(componentservice.getAllComponents(),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 }

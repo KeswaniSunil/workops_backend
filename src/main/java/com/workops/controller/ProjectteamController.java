@@ -37,7 +37,7 @@ public class ProjectteamController {
 		      System.out.println(jsonString);
 			return new ResponseEntity<>(pts.createProjectteam(projectteam),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	@GetMapping("/api/projectteam/{pid}/{email}")
@@ -46,7 +46,7 @@ public class ProjectteamController {
 		try {
 			return new ResponseEntity<>(pts.getProjectteamByEmailAndProjectId(pid,email),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@GetMapping("/api/projectteam/{id}")
@@ -55,7 +55,7 @@ public class ProjectteamController {
 		try {
 			return new ResponseEntity<>(pts.getProjectteamByProjectId(id),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@DeleteMapping("/api/projectteam/{id}")
@@ -65,7 +65,7 @@ public class ProjectteamController {
 			pts.deleteProjectteamByProjectId(id);
 			return new ResponseEntity<>("Porject Deleted Successfully",HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@DeleteMapping("/api/projectteam/{pid}/{email}")
@@ -76,7 +76,7 @@ public class ProjectteamController {
 			pts.deleteProjectteamByEmailAndProjectId(pid,email);
 			return new ResponseEntity<>("Project Deleted Successfully",HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 }

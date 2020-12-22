@@ -26,7 +26,7 @@ public class SprintController {
 		try {
 			return new ResponseEntity<>(sprintservice.getSprintById(id),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	
@@ -36,7 +36,7 @@ public class SprintController {
 		try {
 			return new ResponseEntity<>(sprintservice.getSprintByName(name),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 	}	
 	}
 	
@@ -47,7 +47,7 @@ public class SprintController {
 			sprintservice.deleteSprintById(id);
 			return new ResponseEntity<>("Sprint SuccessFully Deleted",HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	
@@ -57,7 +57,7 @@ public class SprintController {
 		try {
 			return new ResponseEntity<>(sprintservice.updateSprint(sprint),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	
@@ -67,7 +67,7 @@ public class SprintController {
 		try {
 			return new ResponseEntity<>(sprintservice.createSprint(sprint),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	
@@ -77,7 +77,7 @@ public class SprintController {
 		try {
 			return new ResponseEntity<>(sprintservice.getSprintByProjectid(projectid),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	

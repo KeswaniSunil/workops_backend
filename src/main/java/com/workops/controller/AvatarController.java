@@ -26,7 +26,7 @@ public class AvatarController {
 //			System.out.println("com="+component);
 			return new ResponseEntity<>(ats.createAvatar(avatar),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	@PutMapping("/api/avatars/{id}")
@@ -35,7 +35,7 @@ public class AvatarController {
 		try {
 			return new ResponseEntity<>(ats.updateAvatar(avatar),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	
@@ -45,7 +45,7 @@ public class AvatarController {
 		try {
 			return new ResponseEntity<>(ats.getAvatarById(id),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@DeleteMapping("/api/avatars/{id}")
@@ -55,7 +55,7 @@ public class AvatarController {
 			ats.deleteAvatarId(avatarid);
 			return new ResponseEntity<>("Component SuccessFully Deleted",HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@GetMapping("/api/avatars")
@@ -64,7 +64,7 @@ public class AvatarController {
 		try {
 			return new ResponseEntity<>(ats.getAllAvatars(),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 

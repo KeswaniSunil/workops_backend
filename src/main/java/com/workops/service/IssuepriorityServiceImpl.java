@@ -31,7 +31,7 @@ public class IssuepriorityServiceImpl implements IssuepriorityService {
 		Optional<Issuepriority> issue=itdao.findById(Issuepriorityid);
 		if(!issue.isPresent())
 		{
-			throw  new ErrorDetails("Not Found Component With Given Id");
+			throw  new ErrorDetails("Not Found IssuePriority With Given Id");
 		}
 		return issue;
 		}
@@ -50,7 +50,7 @@ public class IssuepriorityServiceImpl implements IssuepriorityService {
 			issuepriority.setId(UUID.randomUUID().toString().substring(0,32));
 			return itdao.save(issuepriority);
 		}
-		throw new ErrorDetails("Issue Already Exists");
+		throw new ErrorDetails("IssuePriority Already Exists");
 		}
 		catch(Exception e)
 		{

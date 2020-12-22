@@ -30,7 +30,7 @@ public class IssuelinkController {
 //		      System.out.println(jsonString);
 			return new ResponseEntity<>(ils.createIssuelink(Issuelink),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	@GetMapping("/api/issuelinks/")
@@ -39,7 +39,7 @@ public class IssuelinkController {
 		try {
 			return new ResponseEntity<>(ils.getAllIssuelinks(),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@GetMapping("/api/issuelinks/{name}")
@@ -48,7 +48,7 @@ public class IssuelinkController {
 		try {
 			return new ResponseEntity<>(ils.getIssuelinkByName(name),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@DeleteMapping("/api/issuelinks/{name}")
@@ -58,7 +58,7 @@ public class IssuelinkController {
 			ils.deleteIssuelinkByName(name);
 			return new ResponseEntity<>("Porject Deleted Successfully",HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@DeleteMapping("/api/issuelinks/{pid}/{cid}")
@@ -69,7 +69,7 @@ public class IssuelinkController {
 			ils.deleteIssuelinkByParentIssueAndChildIssue(pid, cid);
 			return new ResponseEntity<>("Isslue Deleted Successfully",HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 

@@ -33,7 +33,7 @@ public class IssuetypeController {
 		try {
 			return new ResponseEntity<>(its.createIssuetype(issuetype),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	@PutMapping("/api/issuetypes/")
@@ -42,7 +42,7 @@ public class IssuetypeController {
 		try {
 			return new ResponseEntity<>(its.updateIssuetype(issuetype),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	
@@ -52,7 +52,7 @@ public class IssuetypeController {
 		try {
 			return new ResponseEntity<>(its.getIssuetypeById(id),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@DeleteMapping("/api/issuetypes/{id}")
@@ -62,7 +62,7 @@ public class IssuetypeController {
 			its.deleteIssuetypeById(id);
 			return new ResponseEntity<>("Issuetype SuccessFullyDeleted",HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@GetMapping("/api/issuetypes")
@@ -71,7 +71,7 @@ public class IssuetypeController {
 		try {
 			return new ResponseEntity<>(its.getAllIssuetypes(),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 }

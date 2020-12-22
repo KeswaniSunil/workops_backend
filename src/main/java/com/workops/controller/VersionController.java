@@ -29,7 +29,7 @@ public class VersionController {
 		try {
 			return new ResponseEntity<>(Versionservice.createVersion(Version),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	@PutMapping("/api/versions/{id}")
@@ -38,7 +38,7 @@ public class VersionController {
 		try {
 			return new ResponseEntity<>(Versionservice.updateVersion(Version),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	
@@ -49,7 +49,7 @@ public class VersionController {
 		try {
 			return new ResponseEntity<>(Versionservice.getVersionById(id),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@GetMapping("/api/versions/projects/{projectid}")
@@ -58,7 +58,7 @@ public class VersionController {
 		try {
 			return new ResponseEntity<>(Versionservice.getAllVersionByProjectId(projectid),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@DeleteMapping("/api/versions/{vid}")
@@ -68,7 +68,7 @@ public class VersionController {
 			Versionservice.deleteVersionById(vid);
 			return new ResponseEntity<>("Version SuccessFully Deleted",HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@GetMapping("/api/versions")
@@ -77,7 +77,7 @@ public class VersionController {
 		try {
 				return new ResponseEntity<>(Versionservice.getAllVersions(),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 }

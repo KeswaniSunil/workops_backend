@@ -25,7 +25,7 @@ public class IssueAttachmentController {
 		try {
 			return new ResponseEntity<>(iservice.createIssueAttachment(iattach),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	@PutMapping("/api/issueattachments/")
@@ -34,7 +34,7 @@ public class IssueAttachmentController {
 		try {
 			return new ResponseEntity<>(iservice.updateIssueattachment(iattach),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	
@@ -44,7 +44,7 @@ public class IssueAttachmentController {
 		try {
 			return new ResponseEntity<>(iservice.getIssueAttachmentById(id),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@DeleteMapping("/api/issueattachments/{id}")
@@ -54,7 +54,7 @@ public class IssueAttachmentController {
 			iservice.deleteIssueAttachmentById(id);
 			return new ResponseEntity<>("IssueAttachment SuccessFullyDeleted",HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@GetMapping("/api/issueattachments")
@@ -63,7 +63,7 @@ public class IssueAttachmentController {
 		try {
 			return new ResponseEntity<>(iservice.getAllIssueattachments(),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 }
