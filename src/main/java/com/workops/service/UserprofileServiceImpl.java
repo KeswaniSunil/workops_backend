@@ -88,12 +88,11 @@ public class UserprofileServiceImpl implements UserprofileService {
 	}
 
 	@Override
-	public void setSelectedProject(String token , Userprofile userprofile) throws Exception {
+	public void setSelectedProject(String email , Userprofile userprofile) throws Exception {
 		try
 		{
-			UserEmail ue=new UserEmail();
-			ue.setEmail(userdao.getEmailByToken(token));
-			upd.setSelectedProjectByEmail(ue.getEmail(), userprofile.getSelectedProject());
+			System.out.println(userprofile.getSelectedProject());
+			upd.setSelectedProjectByEmail(email, userprofile.getSelectedProject());
 		}
 		catch(Exception e)
 		{

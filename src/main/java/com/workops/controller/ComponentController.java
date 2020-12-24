@@ -33,10 +33,11 @@ public class ComponentController {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
 		}
 	}
-	@PutMapping("/api/components/{id}")
+	@PutMapping("/api/components/")
 	public ResponseEntity update(@RequestBody Component component)
 	{
 		try {
+			System.out.println("Put");
 			return new ResponseEntity<>(componentservice.updateComponent(component),HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);

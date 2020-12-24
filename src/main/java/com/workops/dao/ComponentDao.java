@@ -7,11 +7,13 @@ import javax.transaction.Transactional;
 
 import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.workops.model.Component;
 import com.workops.model.Project;
 
-public interface ComponentDao  extends JpaRepository <Component,String> {
+@Repository
+public interface ComponentDao extends JpaRepository <Component,String> {
 
 	Optional<Component> findByName(String Name);
 	

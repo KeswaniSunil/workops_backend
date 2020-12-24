@@ -114,8 +114,33 @@ public class ProjectServiceImpl implements ProjectService {
 		}
 		catch(Exception e)
 		{
+			System.out.println(e.getMessage());
 			throw new ErrorDetails("Error Deleting Project.Try again Later");
 		}
 		
+	}
+	@Override
+	public List<Project> getAllUserProjects(List<String> projs) throws Exception {
+		try
+		{
+		List<Project> p=projectdao.getprojects(projs);
+		return p;
+		}
+		catch(Exception e)
+		{
+			throw new ErrorDetails("Error in findings .Try again Later");
+		}	}
+
+	@Override
+	public List<String> getProjectIds(String email) throws Exception {
+		try
+		{
+		List<String> p=projectdao.getprojectids(email);
+		return p;
+		}
+		catch(Exception e)
+		{
+			throw new ErrorDetails("Error in findings .Try again Later");
+		}
 	}
 }

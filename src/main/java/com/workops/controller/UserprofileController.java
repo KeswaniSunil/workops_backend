@@ -61,11 +61,11 @@ public class UserprofileController {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
 		}	
 	}
-	@PutMapping("/api/userprofiles/switchproject/{token}")
-	public ResponseEntity setSelectedProject(@PathVariable String token,@RequestBody Userprofile userprofile)
+	@PutMapping("/api/userprofiles/switchproject/{email}")
+	public ResponseEntity setSelectedProject(@PathVariable String email,@RequestBody Userprofile userprofile)
 	{
 		try {
-			ups.setSelectedProject(token,userprofile);
+			ups.setSelectedProject(email,userprofile);
 			return new ResponseEntity<>("Project Selected Successfully",HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);

@@ -15,4 +15,6 @@ public interface ProjectService {
 	String createProject(ProjectData project) throws Exception;
 	String updateProject(Project project);
 	void deleteProjectById(String projectid) throws Exception;
+	List<Project> getAllUserProjects(List<String > projs) throws Exception;
+	List<String> getProjectIds(String email) throws Exception;
 }

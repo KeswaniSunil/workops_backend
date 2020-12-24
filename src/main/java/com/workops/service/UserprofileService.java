@@ -12,5 +12,5 @@ public interface UserprofileService {
 	Userprofile createUserprofile(Userprofile userprofile) throws Exception;
 	Userprofile updateUserprofile(Userprofile userprofile) ;
 	void deleteUserprofileByEmail(String email) throws Exception;
-	void setSelectedProject(String token,Userprofile userprofile) throws Exception;
+	void setSelectedProject(String email,Userprofile userprofile) throws Exception;
 }
