@@ -32,8 +32,7 @@ public class IssuelinkServiceImpl implements IssuelinkService {
 
 	@Override
 	public List<Issuelink> getAllIssuelinks() {
-		// TODO Auto-generated method stub
-		return null;
+	return idao.findAll();
 	}
 
 	@Override

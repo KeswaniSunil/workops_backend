@@ -42,13 +42,13 @@ public class UserOtpServiceImpl implements UserOtpService{
 			Otp myotp=new Otp();
 			myotp.setOtp(otp);
 //			System.out.println("Sending Mail to "+userOtp.getEmail());
-//			SimpleMailMessage message = new SimpleMailMessage(); 
-//	        message.setFrom(env.getProperty("spring.mail.username"));
-//	        message.setTo(userOtp.getEmail()); 
-//	        message.setSubject("OTP for Changing Password"); 
-//	        message.setText("Hello User, your otp is "+otp);
+			SimpleMailMessage message = new SimpleMailMessage(); 
+	        message.setFrom(env.getProperty("spring.mail.username"));
+	        message.setTo(userOtp.getEmail()); 
+	        message.setSubject("OTP for Changing Password"); 
+	        message.setText("Hello User, your otp is "+otp);
 //			System.out.println("Called");
-//	        emailSender.send(message);
+	        emailSender.send(message);
 //			System.out.println("Called 2");
 			return myotp;
 		}

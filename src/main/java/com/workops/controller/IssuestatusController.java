@@ -35,7 +35,7 @@ public class IssuestatusController {
 		try {
 			return new ResponseEntity<>(its.createIssueStatus(issuestatus),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	@PutMapping("/api/issuestatus/")
@@ -44,7 +44,7 @@ public class IssuestatusController {
 		try {
 			return new ResponseEntity<>(its.updateIssueStatus(issuestatus),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	
@@ -54,7 +54,7 @@ public class IssuestatusController {
 		try {
 			return new ResponseEntity<>(its.getIssueStatusById(id),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@DeleteMapping("/api/issuestatus/{id}")
@@ -64,7 +64,7 @@ public class IssuestatusController {
 			its.deleteIssueStatusById(id);
 			return new ResponseEntity<>("Issuestatus SuccessFullyDeleted",HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@GetMapping("/api/issuestatus")
@@ -73,7 +73,7 @@ public class IssuestatusController {
 		try {
 			return new ResponseEntity<>(its.getAllIssueStatus(),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 }

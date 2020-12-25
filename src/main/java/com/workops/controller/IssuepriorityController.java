@@ -29,7 +29,7 @@ public class IssuepriorityController {
 		try {
 			return new ResponseEntity<>(its.createIssuepriority(issuepriority),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	@PutMapping("/api/issueprioritys/")
@@ -38,7 +38,7 @@ public class IssuepriorityController {
 		try {
 			return new ResponseEntity<>(its.updateIssuepriority(issuepriority),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	
@@ -48,7 +48,7 @@ public class IssuepriorityController {
 		try {
 			return new ResponseEntity<>(its.getIssuepriorityById(id),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@DeleteMapping("/api/issueprioritys/{id}")
@@ -58,7 +58,7 @@ public class IssuepriorityController {
 			its.deleteIssuepriorityById(id);
 			return new ResponseEntity<>("Issuepriority SuccessFullyDeleted",HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@GetMapping("/api/issueprioritys")
@@ -67,7 +67,7 @@ public class IssuepriorityController {
 		try {
 			return new ResponseEntity<>(its.getAllIssueprioritys(),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 }

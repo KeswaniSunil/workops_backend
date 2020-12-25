@@ -78,7 +78,7 @@ public class ComponentServiceImpl implements ComponentService {
 		if(!com.isPresent())
 		{
 
-			throw new ErrorDetails("No Project Exists With this Id");
+			throw new ErrorDetails("No Component Exists With this Id");
 		}
 		componentdao.deleteById(componentid);
 		}
@@ -90,20 +90,15 @@ public class ComponentServiceImpl implements ComponentService {
 	}
 
 	@Override
-	public Optional<Component> getComponentById(String cid) throws Exception {
-		try
-		{
+	public Component getComponentById(String cid) throws Exception {
+		
 			Optional<Component> com=componentdao.findById(cid);
 		if(!com.isPresent())
 		{
 			throw  new ErrorDetails("Not Found Component With Given Id");
 		}
-		return com;
-		}
-		catch(Exception e)
-		{
-			throw new ErrorDetails(e.getMessage());
-		}
+		return com.get();
+		
 	}
 
 	

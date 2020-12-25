@@ -31,4 +31,9 @@ public interface ProjectteamDao extends JpaRepository <Projectteam,ProjectteamPK
 	@Modifying
 	void deleteById(ProjectteamPK id);
 	
+	@Transactional
+	@Modifying
+	@Query(value="SELECT count(*) from projectteam where projectid=:projectId",nativeQuery=true)
+	Integer countByProjectId(String projectId);
+	
 }

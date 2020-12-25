@@ -9,18 +9,15 @@ import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.workops.model.Project;
-import com.workops.model.Version;
+import com.workops.model.Sprint;
 
-public interface VersionDao  extends JpaRepository <Version,String> {
-
-	Optional<Version> findByName(String Name);
+public interface SprintDao extends JpaRepository<Sprint, String> {
 	
+	Optional<Sprint> findByName(String Name);
+	@Query(value = "SELECT * FROM sprint u WHERE u.projectId = ?1",nativeQuery = true)
+	List<Sprint> findSprintByProjectid(String projectid);
 	@Transactional
 	@Modifying
-	List<Version> findByProject(Project project);
-	@Transactional
-	@Modifying
-	@Query(value="SELECT count(*) from version where projectId=:projectId",nativeQuery=true)
+	@Query(value="SELECT count(*) from sprint where projectId=:projectId",nativeQuery=true)
 	Integer countByProjectId(String projectId);
 }

@@ -32,25 +32,25 @@ public class IssuelinkController {
 //		      System.out.println(jsonString);
 			return new ResponseEntity<>(ils.createIssuelink(Issuelink),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
-//	@GetMapping("/api/Issuelinks/{id}")
-//	public ResponseEntity findProject(@RequestBody IssuelinkPK ptid)
-//	{
-//		try {
-//			return new ResponseEntity<>(ils.getIssuelinkById(ptid),HttpStatus.OK);
-//		} catch (Exception e) {
-//			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
-//		}	
-//	}
-	@GetMapping("/api/Issuelinks/{name}")
+	@GetMapping("/api/issuelinks/")
+	public ResponseEntity findProject()
+	{
+		try {
+			return new ResponseEntity<>(ils.getAllIssuelinks(),HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+		}	
+	}
+	@GetMapping("/api/issuelinks/{name}")
 	public ResponseEntity findIssuelink(@PathVariable("name") String name)
 	{
 		try {
 			return new ResponseEntity<>(ils.getIssuelinkByName(name),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@DeleteMapping("/api/issuelinks/{name}")
@@ -60,7 +60,7 @@ public class IssuelinkController {
 			ils.deleteIssuelinkByName(name);
 			return new ResponseEntity<>("Porject Deleted Successfully",HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@DeleteMapping("/api/issuelinks/{pid}/{cid}")
@@ -71,7 +71,7 @@ public class IssuelinkController {
 			ils.deleteIssuelinkByParentIssueAndChildIssue(pid, cid);
 			return new ResponseEntity<>("Isslue Deleted Successfully",HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 

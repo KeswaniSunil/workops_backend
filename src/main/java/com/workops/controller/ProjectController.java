@@ -33,7 +33,7 @@ public class ProjectController {
 		try {
 			return new ResponseEntity<>(projectservice.createProject(project),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	@PutMapping("/api/projects")
@@ -42,7 +42,7 @@ public class ProjectController {
 		try {
 			return new ResponseEntity<>(projectservice.updateProject(project),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	
@@ -52,7 +52,7 @@ public class ProjectController {
 		try {
 			return new ResponseEntity<>(projectservice.getProjectById(id),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@DeleteMapping("/api/projects/{id}")
@@ -62,7 +62,7 @@ public class ProjectController {
 			projectservice.deleteProjectById(id);
 			return new ResponseEntity<>("Project SuccessFullyDeleted",HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@GetMapping("/api/projects")
@@ -71,21 +71,21 @@ public class ProjectController {
 		try {
 			return new ResponseEntity<>(projectservice.getAllProjects(),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 	@GetMapping("/api/projects/userprojects/{emailid}")
 	public ResponseEntity<Object> findAllProjectOfUser(@PathVariable("emailid") String emailid)
 	{
 		try {
-			List<String> projsid=projectservice.getProjectIds(emailid);
+			List<String>projsid=projectservice.getProjectIds(emailid);
 			System.out.println("pro="+projsid.size());
 			if(projsid.size()>0)
 			return new ResponseEntity<>(projectservice.getAllUserProjects(projsid),HttpStatus.OK);
 			else
 				return new ResponseEntity<>("No Projects wih Given email",HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
 }
