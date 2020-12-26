@@ -20,7 +20,7 @@ public class SprintController {
 	@Autowired
 	SprintService sprintservice;
 	
-	@GetMapping("/api/sprint/id/{id}")
+	@GetMapping("/api/sprint/{id}")
 	public ResponseEntity<?> findSprint(@PathVariable("id") String id)
 	{
 		try {
@@ -30,15 +30,15 @@ public class SprintController {
 		}	
 	}
 	
-	@GetMapping("/api/sprint/name/{name}")
-	public ResponseEntity<?> findSprintBySname(@PathVariable("name") String name)
-	{
-		try {
-			return new ResponseEntity<>(sprintservice.getSprintByName(name),HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
-	}	
-	}
+//	@GetMapping("/api/sprint/name/{name}")
+//	public ResponseEntity<?> findSprintBySname(@PathVariable("name") String name)
+//	{
+//		try {
+//			return new ResponseEntity<>(sprintservice.getSprintByName(name),HttpStatus.OK);
+//		} catch (Exception e) {
+//			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+//	}	
+//	}
 	
 	@DeleteMapping("/api/sprint/{id}")
 	public ResponseEntity<?> removeSprint(@PathVariable String id)
