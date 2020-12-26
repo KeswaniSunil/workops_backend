@@ -24,7 +24,7 @@ public interface ProjectteamDao extends JpaRepository <Projectteam,ProjectteamPK
 //	
 	@Transactional
 	@Modifying
-    @Query(value = "DELETE FROM projectteam p where p.projectid=c05d8983-33c3-11eb-acc4-588a5a24 ", nativeQuery = true)
+    @Query(value = "DELETE FROM projectteam p where p.projectid=:projectid ", nativeQuery = true)
 	void deleteProject(@Param("projectid") String projectid);
 	
 	@Transactional

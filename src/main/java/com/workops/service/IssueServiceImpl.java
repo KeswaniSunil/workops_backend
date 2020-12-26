@@ -96,4 +96,9 @@ public class IssueServiceImpl implements IssueService {
 		}
 	}
 
+	@Override
+	public List<Issue> getAllIssuesBySprintId(String sprintid) {
+		return idao.findAllIssuesBySprintId(sprintid);
+	}
+
 }

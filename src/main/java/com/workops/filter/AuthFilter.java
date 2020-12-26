@@ -34,14 +34,16 @@ public class AuthFilter extends GenericFilterBean {
 			throws IOException, ServletException {
 		System.out.println("Filter Called");
 
+		
+		
 		HttpServletRequest httpRequest=(HttpServletRequest)request;
 		HttpServletResponse httpResponse=(HttpServletResponse)response;
-		Enumeration<String> headerNames = httpRequest.getHeaderNames();	
-
-	    while (headerNames != null && headerNames.hasMoreElements()) {
-	        String key = headerNames.nextElement();
-	        System.out.println("Key="+key);
-	    }
+//		Enumeration<String> headerNames = httpRequest.getHeaderNames();	
+//
+//	    while (headerNames != null && headerNames.hasMoreElements()) {
+//	        String key = headerNames.nextElement();
+//	        System.out.println("Key="+key);
+//	    }
 		String authHeader=httpRequest.getHeader("Authorization");
 		if(!httpRequest.getRequestURI().toString().startsWith("/api/signin")&&!httpRequest.getRequestURI().toString().startsWith("/api/signup"))
 		{

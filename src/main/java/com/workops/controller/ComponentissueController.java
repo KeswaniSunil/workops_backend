@@ -42,7 +42,7 @@ public class ComponentissueController {
 	{
 		try {
 			List<String>issueids=compservice.getAllIssueIds(compid);
-			System.out.println("pro="+issueids.size()+" "+issueids);
+//			System.out.println("pro="+issueids.size()+" "+issueids);
 			if(issueids.size()>0)
 			return new ResponseEntity<>(compservice.getAllIssuesByComponentId(issueids),HttpStatus.OK);
 			else
@@ -53,7 +53,7 @@ public class ComponentissueController {
 	}
 	
 	@DeleteMapping("/api/componentissue/{cid}/{issueid}")
-	public ResponseEntity deleteProjectByKey(@PathVariable("cid") String cid,@PathVariable("issueid") String issueid)
+	public ResponseEntity deleteComponentIssueByKey(@PathVariable("cid") String cid,@PathVariable("issueid") String issueid)
 	{
 //		System.out.println("innn "+email+" "+pid);
 		try {

@@ -9,6 +9,7 @@ public interface IssueService {
 
 
 	List<Issue> getAllIssues();
+	List<Issue> getAllIssuesBySprintId(String sprintid);
 	Optional<Issue> getIssueById(String issueid)throws Exception;
 	Issue createIssue(Issue issue) throws Exception;
 	String updateIssue(Issue issue) ;

@@ -75,4 +75,37 @@ public class IssueController {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}	
 	}
+	///////////////////////////////////////////////////////
+	@GetMapping("/api/sprintissues/{sprintid}")
+	public ResponseEntity<Object> findAllSprintIssues(@PathVariable("sprintid")String sprintid)
+	{
+		try {
+			return new ResponseEntity<>(iservice.getAllIssuesBySprintId(sprintid),HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+		}	
+	}
+//	@PostMapping("/api/sprintissues")
+//	public ResponseEntity createSprintIssue(@RequestBody Issue issue) throws JsonProcessingException 
+//	{
+//		ObjectMapper mapper = new ObjectMapper();
+//	      //Converting the Object to JSONString
+//	      String jsonString = mapper.writeValueAsString(issue);
+//	      System.out.println(jsonString);
+//		try {
+//			return new ResponseEntity<>(iservice.createIssue(issue),HttpStatus.OK);
+//		} catch (Exception e) {
+//			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+//		}
+//	}
+//	@DeleteMapping("/api/issues/{sprintid}/{issueid}")
+//	public ResponseEntity removeSprintIssue(@PathVariable("sprintid") String sprintid,@PathVariable("issueid") String issueid)
+//	{
+//		try {
+////			iservice.deleteIssueById(id);
+//			return new ResponseEntity<>("Issue SuccessFullyDeleted",HttpStatus.OK);
+//		} catch (Exception e) {
+//			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+//		}	
+//	}
 }
