@@ -46,7 +46,7 @@ public class ProjectteamController {
 		try {
 			return new ResponseEntity<>(pts.getProjectteamByEmailAndProjectId(pid,email),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.EXPECTATION_FAILED);
 		}	
 	}
 	@GetMapping("/api/projectteam/{id}")

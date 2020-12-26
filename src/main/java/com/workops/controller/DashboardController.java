@@ -18,7 +18,7 @@ public class DashboardController {
 	DashboardService dashboardService;
 	
 	@GetMapping("/api/dashboard/{pid}")
-	public ResponseEntity findComponent(@PathVariable String pid)
+	public ResponseEntity getDashboardData(@PathVariable String pid)
 	{
 		try {
 			return new ResponseEntity<>(dashboardService.getDashboardData(pid),HttpStatus.OK);

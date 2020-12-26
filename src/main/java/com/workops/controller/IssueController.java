@@ -30,7 +30,7 @@ public class IssueController {
 		ObjectMapper mapper = new ObjectMapper();
 	      //Converting the Object to JSONString
 	      String jsonString = mapper.writeValueAsString(issue);
-	      System.out.println(jsonString);
+//	      System.out.println(jsonString);
 		try {
 			return new ResponseEntity<>(iservice.createIssue(issue),HttpStatus.OK);
 		} catch (Exception e) {

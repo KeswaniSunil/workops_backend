@@ -1,5 +1,6 @@
 package com.workops.dao;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -21,4 +22,7 @@ public interface IssueDao extends JpaRepository <Issue,String>{
 	@Modifying
 	@Query(value="SELECT count(*) from issue where sprintid is null",nativeQuery=true)
 	Integer countByBacklog(String projectId);
+	@Query(value="SELECT * from issue i where i.sprintid is null",nativeQuery=true)
+	List<Issue> findAllIssues();
+
 }

@@ -25,7 +25,7 @@ public class IssueServiceImpl implements IssueService {
 	ComponentDao cdao;
 	@Override
 	public List<Issue> getAllIssues() {
-		return idao.findAll();
+		return idao.findAllIssues();
 	}
 
 	@Override

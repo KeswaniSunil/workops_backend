@@ -32,7 +32,7 @@ public class VersionController {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
-	@PutMapping("/api/versions/{id}")
+	@PutMapping("/api/versions")
 	public ResponseEntity update(@RequestBody Version Version)
 	{
 		try {
